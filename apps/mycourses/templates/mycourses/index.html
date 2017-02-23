@@ -1,0 +1,87 @@
+<html>
+<head>
+  <style>
+  /** {outline: 2px dotted rgb(231,30,38);}*/
+    #wrapper{
+      margin: auto;
+      width: 970px;
+      text-align: left;
+      padding:20px;
+    }
+    table{
+      border: 1px solid black;
+      padding: 0;
+      border-collapse: collapse;
+    }
+    td{
+      /*border: 1px solid black;*/
+      padding: 5px;
+      margin:0;
+      border-left: 1px solid black;
+      border-rigth: 1px solid black;
+    }
+    th{
+      /*border: 1px solid black;*/
+      padding: 5px;
+      margin:0;
+      border-left: 1px solid black;
+      border-rigth: 1px solid black;
+      background-color: silver;
+    }
+    tr:nth-child(even) {background: #EEE}
+    tr:nth-child(odd) {background: #FFF}
+    .error{
+      color: red;
+      font-size: 14pt;
+      font-weight: bold;
+    }
+    form{
+      width: 40%;
+      text-align: right;
+    }
+    input[type='text']{
+      width: 70%;
+
+    }
+    textarea{
+      width: 70%;
+    }
+    label{
+      vertical-align:top;
+    }
+  </style>
+</head>
+  <body>
+    <div id="wrapper">
+      <h1>Add a new course</h1>
+      <!-- with all the data we can then construct a more structured output -->
+        <form class="" action="/add" method="POST">
+          {% csrf_token %}
+          <label for="">Name&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp:</label>
+          <input type="text" name="name" value=""></br></br>
+          <label for="">Description:</label>
+          <textarea name="desc" value="" rows='5'></textarea></br></br>
+          <input type="submit" name="" value="Add">
+        </form>
+      <h1>Courses:</h1>
+      <table>
+        <tr>
+          <th>Cousre Name</th>
+          <th>Description</th>
+          <th>Create Time</th>
+          <th>Action</th>
+        </tr>
+        {% for course in courses %}
+        <tr>
+          <td>{{course.name}}</td>
+          <td>{{course.desc.desc}}</td>
+          <td>{{course.created_at}}</td>
+          <td>
+            <a href="/detail/{{course.id}}">remove</a>
+          </td>
+        </tr>
+        {% endfor %}
+      </table></br></br>
+    </div>
+  </body>
+</html>

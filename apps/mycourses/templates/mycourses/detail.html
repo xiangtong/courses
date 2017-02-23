@@ -1,0 +1,30 @@
+<html>
+<head>
+<style media="screen">
+  body{
+    padding-left: 10%;
+  }
+  .error{
+    color: red;
+    font-size: 14pt;
+    font-weight: bold;
+  }
+</style>
+</head>
+  <body>
+    <h1>Are you sure you want to delete the following course?</h1>
+    <!-- with all the data we can then construct a more structured output -->
+    {% for course in course %}
+      <p>Name:&nbsp{{course.name}}</p>
+      <p>Description:&nbsp{{course.desc.desc}}</p></br>
+
+    <form class="" action="/" method="get">
+      <input type="submit" name="" value="No">
+    </form>
+    <form class="" action="/delete/{{course.id}}" method="post">
+              {% csrf_token %}
+      <input type="submit" name="" value="Yes! I want to delete this">
+    </form>
+    {% endfor %}
+  </body>
+</html>
